@@ -21,6 +21,7 @@
   "homepage": "https://github.com/saahirfoux/GraphQL#readme",
   "dependencies": {
     "apollo-server-express": "^2.16.1",
+    "axios": "^0.19.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "node-fetch": "^2.6.0"
