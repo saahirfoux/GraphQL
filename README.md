@@ -1,4 +1,4 @@
-# GraphQL
+# Coding Challenge: GraphQL
 
 ## Goal 
 
@@ -17,3 +17,18 @@ o Update Post
 o Delete Post
 
 Implement authentication using Github single sign on
+
+## Start Up Instructions
+
+<pre>git clone https://github.com/saahirfoux/GraphQL.git</pre>
+
+After you have cloned the repository run the following command:
+
+### `npm install`
+### `npm run dev`
+
+Runs the app in the development mode.<br />
+Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
+
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
