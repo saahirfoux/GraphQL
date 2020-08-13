@@ -23,6 +23,7 @@ const typeDefs = gql`
         phone: String
         website: String
         address: UserAddress
+        posts: [Post]
     }
     type UserAddress {
         street: String
@@ -57,6 +58,13 @@ const resolvers = {
             return await fetch('https://jsonplaceholder.typicode.com/posts')
             .then(response => response.json())
             .then(data => {return data});
+        }
+    },
+    User: {
+        posts: async (parent) => {
+            return await fetch('https://jsonplaceholder.typicode.com/posts?userId=' + parent.id)
+                .then(response => response.json())
+                .then(data => {return data});
         }
     }
 };
