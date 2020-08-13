@@ -20,11 +20,16 @@ Implement authentication using Github single sign on
 
 ## Start Up Instructions
 
+In your terminal or cmd prompt, navigate to the folder you which to place the GraphQL project folder
+
+Then clone it. 
+
 <pre>git clone https://github.com/saahirfoux/GraphQL.git</pre>
 
 After you have cloned the repository run the following commands:
 
-<pre>npm install</br>
+<pre>cd [Folder_Name] </br>
+npm install</br>
 npm run dev</pre>
 
 Runs the server in the development mode.<br />
