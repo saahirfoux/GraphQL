@@ -28,7 +28,7 @@ After you have cloned the repository run the following commands:
 npm run dev</pre>
 
 Runs the server in the development mode.<br />
-Open [http://localhost:3001](http://localhost:3001) to view it in the browser. The server will automatically redirect you to the GraphIQL at '/challenge'
+Open [http://localhost:3001](http://localhost:3001) to view it in the browser. 
 <br />
 You will also see any lint errors in the console.
 
