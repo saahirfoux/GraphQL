@@ -15,6 +15,10 @@ const typeDefs = gql`
         users: [User!]
         posts: [Post!]
         user(id: ID!): User
+        postsByUser(id: ID!): [Post]
+        postById(id: ID!): Post
+        commentsByPost(id: ID!): [Comment]
+        commentByIds(pid: ID! cid: ID!): Comment
     }
     type User {
         id: Int!
@@ -35,6 +39,7 @@ const typeDefs = gql`
     type Post {
         id: Int
         user: User
+        userId: Int
         title: String
         body: String
         comments: [Comment]
@@ -42,6 +47,7 @@ const typeDefs = gql`
     type Comment {
         id: Int
         post: Post
+        postId: Int
         name: String
         email: String
         body: String
@@ -53,19 +59,50 @@ const resolvers = {
         users: async () => {
             return await fetch('https://jsonplaceholder.typicode.com/users')
             .then(response => response.json())
-            .then(data => {return data});
+            .then(users => {return users});
         },
         posts: async () => {
             return await fetch('https://jsonplaceholder.typicode.com/posts')
             .then(response => response.json())
-            .then(data => {return data});
+            .then(posts => {return posts});
+        },
+        user: async (_, {id}) => {
+            return await fetch('https://jsonplaceholder.typicode.com/users')
+                .then(response => response.json())
+                .then(users => {
+                 return users.find(user => user.id.toString() === id)
+            });
+        },
+        postsByUser: async (_, {id}) => {
+            return await fetch('https://jsonplaceholder.typicode.com/posts?userId=' + id)
+                .then(response => response.json())
+                .then(posts => posts );
+        },
+        postById: async (_, {id}) => {
+            return await fetch('https://jsonplaceholder.typicode.com/posts/' + id)
+                .then(response => response.json())
+                .then(posts => {
+                 return posts
+            });
+        },
+        commentsByPost: async (_, {id}) => {
+            return await fetch('https://jsonplaceholder.typicode.com/comments?postId=' + id)
+                .then(response => response.json())
+                .then(comments => comments );
+        },
+        commentByIds: async (_, {pid, cid}) => {
+            return await fetch('https://jsonplaceholder.typicode.com/comments?postId=' + pid)
+                .then(response => response.json())
+                .then(comments => {
+                 return comments.find(comment => comment.id.toString() === cid)
+            });
         }
     },
     User: {
-        posts: async (parent) => {
-            return await fetch('https://jsonplaceholder.typicode.com/posts?userId=' + parent.id)
+        posts: async ({id}) => {
+            return await fetch('https://jsonplaceholder.typicode.com/posts?userId=' + id)
                 .then(response => response.json())
-                .then(data => {return data});
+                .then(posts => {return posts});
         }
     }
 };
