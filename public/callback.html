@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Thank You</title>
+</head>
+
+<body>
+    <h2> Thank you for logging in. In 3 seconds you will now be redirected to the GraphQL Interface </h2>
+</body>
+<script>
+	const query = window.location.search.substring(1)
+	const token = query.split('access_token=')[1]
+
+	// Call the user info API
+	fetch('//api.github.com/user', {
+			headers: {
+				Authorization: 'token ' + token
+			}
+		})
+		.then(res => res.json())
+		.then(res => {
+			setTimeout(() => {
+                window.location = '/challenge';
+            }, 3000);
+		})
+</script>
+
+</html>
